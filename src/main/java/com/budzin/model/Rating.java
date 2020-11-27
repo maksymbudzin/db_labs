@@ -1,25 +1,28 @@
 package com.budzin.model;
 
-import com.budzin.annotation.Colomn;
-import com.budzin.annotation.Primary_key;
+
 import com.budzin.annotation.Table;
 
-@Table(name = "Rating")
-public class Rating {
-    @Primary_key
-    @Colomn(name = "id")
-    private int id;
+import javax.persistence.*;
 
-    @Colomn(name = "number_of_star")
+@Table(name = "Rating")
+@Entity
+public class Rating {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "number_of_star")
     private String number_of_star;
 
-    @Colomn(name = "date")
+    @Column(name = "date")
     private String date;
 
-    @Colomn(name = "Customer_id")
+    @Column(name = "Customer_id")
     private String Customer_id;
 
-    @Colomn(name = "Customer_Trip_Order_id")
+    @Column(name = "Customer_Trip_Order_id")
     private String Customer_Trip_Order_id;
 
     public Rating(int id, String number_of_star, String date, String customer_id, String customer_Trip_Order_id) {
@@ -32,6 +35,10 @@ public class Rating {
 
     public Rating(String number_of_star, String date, String customer_id, String customer_Trip_Order_id) {
         this(-1, number_of_star, date, customer_id, customer_Trip_Order_id);
+    }
+
+    public Rating() {
+
     }
 
     public int getId() {
@@ -78,10 +85,10 @@ public class Rating {
     public String toString() {
         return
                 "\n id=" + id +
-                ",\n  number_of_star='" + number_of_star + '\'' +
-                ",\n date='" + date + '\'' +
-                ",\n Customer_id='" + Customer_id + '\'' +
-                ",\n Customer_Trip_Order_id='" + Customer_Trip_Order_id + '\'' +
-                '}';
+                        ",\n  number_of_star='" + number_of_star + '\'' +
+                        ",\n date='" + date + '\'' +
+                        ",\n Customer_id='" + Customer_id + '\'' +
+                        ",\n Customer_Trip_Order_id='" + Customer_Trip_Order_id + '\'' +
+                        '}';
     }
 }

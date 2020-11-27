@@ -1,24 +1,26 @@
 package com.budzin.model;
 
-import com.budzin.annotation.Colomn;
-import com.budzin.annotation.Primary_key;
+
 import com.budzin.annotation.Table;
 
+import javax.persistence.*;
+
 @Table(name = "Owner_information")
+@Entity
 public class Owner_information {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-    @Primary_key
-    @Colomn(name = "id")
-    private int id;
-
-    @Colomn(name = "Name")
+    @Column(name = "Name")
     private String Name;
 
-    @Colomn(name = "Surname")
+    @Column(name = "Surname")
     private String Surname;
 
-    @Colomn(name = "country")
+    @Column(name = "country")
     private String country;
 
     public Owner_information(int id, String name, String surname, String country) {
@@ -30,6 +32,10 @@ public class Owner_information {
 
     public Owner_information(String name, String surname, String country) {
         this(-1, name, surname, country);
+    }
+
+    public Owner_information() {
+
     }
 
     public int getId() {
@@ -68,9 +74,9 @@ public class Owner_information {
     public String toString() {
         return
                 "\nid=" + id +
-                ",\n Name='" + Name + '\'' +
-                ",\n Surname='" + Surname + '\'' +
-                ",\n country='" + country + '\'' +
-                '}';
+                        ",\n Name='" + Name + '\'' +
+                        ",\n Surname='" + Surname + '\'' +
+                        ",\n country='" + country + '\'' +
+                        '}';
     }
 }

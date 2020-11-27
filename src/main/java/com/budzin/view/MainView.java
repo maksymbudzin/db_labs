@@ -1,10 +1,9 @@
 package com.budzin.view;
 
-import com.budzin.DAO.implementation.Owner_informationDAO;
+
 import com.budzin.controller.*;
 import com.budzin.model.*;
 
-import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,35 +13,27 @@ public class MainView {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    private final TripAdvizor_objecController tripAdvizor_objecController = new TripAdvizor_objecController();
-    private final CustomerController customerController = new CustomerController();
-    private final FeedbackController feedbackController = new FeedbackController();
-    private final RatingController ratingController = new RatingController();
-    private final LocationController locationController = new LocationController();
-    private final Owner_informationController ownerInformationController = new Owner_informationController();
-    private final Trip_OrderController trip_orderController = new Trip_OrderController();
+    private final TripAdvizor_objecController tripAdvizor_objecController;
+    private final CustomerController customerController;
+    private final FeedbackController feedbackController;
+    private final RatingController ratingController;
+    private final LocationController locationController;
+    private final Owner_informationController ownerInformationController;
+    private final Trip_OrderController trip_orderController;
 
 
     private final Map<String, Printable> menu = new LinkedHashMap<>();
 
 
-    public MainView(){
+    public MainView() {
 
-
-      /*  menu.put("Q", "Q - exit program");
-        menu.put("S", "S - show menu");
-
-        menu.put("1", "1 - Get all tripAdvizoOobjects");
-        menu.put("2", "2 - Get tripAdvizorObject by ID");
-        menu.put("3", "3 - Create tripAdvixorObjects");
-        menu.put("4", "4 - Delete tripAdvizorObject by ID");
-        menu.put("5", "5 - Update tripAdvizorObject");
-
-        methodsMenu.put("1", this::getAllTripAdvizorObjects);
-        methodsMenu.put("2", this::getTripAdvizorObjectsById);
-        methodsMenu.put("3", this::createTripAdvizorObject);
-        methodsMenu.put("4", this::deleteTripAdvizorObject);
-        methodsMenu.put("5", this::updateTripAdvizorObject);*/
+        trip_orderController = new Trip_OrderController();
+        ownerInformationController = new Owner_informationController();
+        locationController = new LocationController();
+        ratingController = new RatingController();
+        feedbackController = new FeedbackController();
+        customerController = new CustomerController();
+        tripAdvizor_objecController = new TripAdvizor_objecController();
 
         menu.put("11", this::getAllTripAdvizorObjects);
         menu.put("12", this::getTripAdvizorObjectsById);
@@ -87,9 +78,6 @@ public class MainView {
         menu.put("75", this::deleteTripOrder);
 
 
-
-
-
     }
 
     public void displayMenu() {
@@ -131,7 +119,7 @@ public class MainView {
         System.out.println(tripAdvizor_objecController.getById(id) + "\n");
     }
 
-    private TripAdvizor_objec getTripAdvizorObgectsInputs() {
+    private TripAdvizor_object getTripAdvizorObgectsInputs() {
         System.out.println("Enter objec_name: ");
         String objec_name = SCANNER.next();
         System.out.println("Enter number_of_star: ");
@@ -145,23 +133,23 @@ public class MainView {
         System.out.println("\nEnter ultra all inclusive");
         String ultra_all_inclusive = SCANNER.next();
 
-        return new TripAdvizor_objec(objec_name, number_of_star, free_room, busy_room, all_inclusive, ultra_all_inclusive);
+        return new TripAdvizor_object(objec_name, number_of_star, free_room, busy_room, all_inclusive, ultra_all_inclusive);
     }
 
-    private void createTripAdvizorObject () throws SQLException {
+    private void createTripAdvizorObject() throws SQLException {
         System.out.println("\n[Trip Advizor Object / CREATE]");
-        TripAdvizor_objec tripAdvizor_objec = getTripAdvizorObgectsInputs();
-        tripAdvizor_objecController.create(tripAdvizor_objec);
+        TripAdvizor_object tripAdvizor_object = getTripAdvizorObgectsInputs();
+        tripAdvizor_objecController.create(tripAdvizor_object);
         System.out.println("Trip Advizor Object successfully created\n");
     }
 
-    private void updateTripAdvizorObject () throws SQLException {
+    private void updateTripAdvizorObject() throws SQLException {
         System.out.println("\n[Trip Advizor Object/ UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
-        TripAdvizor_objec tripAdvizor_objec = getTripAdvizorObgectsInputs();
-        tripAdvizor_objec.setId(id);
+        TripAdvizor_object tripAdvizor_object = getTripAdvizorObgectsInputs();
+        tripAdvizor_object.setId(id);
 
-        tripAdvizor_objecController.update(tripAdvizor_objec.getId(), tripAdvizor_objec);
+        tripAdvizor_objecController.update(tripAdvizor_object.getId(), tripAdvizor_object);
         System.out.println("Trip Object with ID=" + id + " successfully updated\n");
     }
 
@@ -195,17 +183,17 @@ public class MainView {
         return new Customer(name, surname);
     }
 
-    private void createCustomer () throws SQLException {
+    private void createCustomer() throws SQLException {
         System.out.println("\n[Customer / CREATE]");
         Customer customer = getCustomersInputs();
         customerController.create(customer);
         System.out.println("Customer successfully created\n");
     }
 
-    private void updateCustomer () throws SQLException {
+    private void updateCustomer() throws SQLException {
         System.out.println("\n[Customer/ UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
-        Customer customer =  getCustomersInputs();
+        Customer customer = getCustomersInputs();
         customer.setId(id);
 
         customerController.update(customer.getId(), customer);
@@ -243,17 +231,17 @@ public class MainView {
         System.out.println("customer_trip: ");
         String Customer_Trip_Order_id = SCANNER.next();
 
-        return new Feedback(name, time, Customer_Id, Customer_Trip_Order_id );
+        return new Feedback(name, time, Customer_Id, Customer_Trip_Order_id);
     }
 
-    private void createFeedback () throws SQLException {
+    private void createFeedback() throws SQLException {
         System.out.println("\n[Feedback / CREATE]");
         Feedback feedback = getFeedbacksInputs();
         feedbackController.create(feedback);
         System.out.println("Feedback successfully created\n");
     }
 
-    private void updateFeedback () throws SQLException {
+    private void updateFeedback() throws SQLException {
         System.out.println("\n[Feedback/ UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
         Feedback feedback = getFeedbacksInputs();
@@ -295,17 +283,17 @@ public class MainView {
         System.out.println("customer_trip: ");
         String Customer_Trip_Order_id = SCANNER.next();
 
-        return new Rating(number_of_star, date, Customer_Id, Customer_Trip_Order_id );
+        return new Rating(number_of_star, date, Customer_Id, Customer_Trip_Order_id);
     }
 
-    private void createRating () throws SQLException {
+    private void createRating() throws SQLException {
         System.out.println("\n[Rating / CREATE]");
         Rating rating = getRatingInputs();
         ratingController.create(rating);
         System.out.println("Rating successfully created\n");
     }
 
-    private void updateRating () throws SQLException {
+    private void updateRating() throws SQLException {
         System.out.println("\n[Rating / UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
         Rating rating = getRatingInputs();
@@ -337,23 +325,23 @@ public class MainView {
 
 
     private Location getLocationInputs() {
-        System.out.println("Enter number_of_star: ");
+        System.out.println("Enter country: ");
         String Country = SCANNER.next();
-        System.out.println("Enter date: ");
+        System.out.println("Enter city: ");
         String City = SCANNER.next();
 
 
         return new Location(Country, City);
     }
 
-    private void createLocation () throws SQLException {
+    private void createLocation() throws SQLException {
         System.out.println("\n[Location / CREATE]");
         Location location = getLocationInputs();
         locationController.create(location);
         System.out.println("Location successfully created\n");
     }
 
-    private void updateLocation () throws SQLException {
+    private void updateLocation() throws SQLException {
         System.out.println("\n[Location / UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
         Location location = getLocationInputs();
@@ -395,17 +383,17 @@ public class MainView {
         return new Owner_information(Name, Surname, Country);
     }
 
-    private void createOwnerInformation () throws SQLException {
+    private void createOwnerInformation() throws SQLException {
         System.out.println("\n[Owner / CREATE]");
-        Owner_information owner_information =  getOwnerInputs();
+        Owner_information owner_information = getOwnerInputs();
         ownerInformationController.create(owner_information);
         System.out.println("Owner successfully created\n");
     }
 
-    private void updateOwnerInformation () throws SQLException {
+    private void updateOwnerInformation() throws SQLException {
         System.out.println("\n[Owner / UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
-        Owner_information owner_information =  getOwnerInputs();
+        Owner_information owner_information = getOwnerInputs();
         owner_information.setId(id);
         ownerInformationController.update(owner_information.getId(), owner_information);
         System.out.println("Owner with ID=" + id + " successfully updated\n");
@@ -444,14 +432,14 @@ public class MainView {
         return new Trip_Order(price_in_dollars, date, Customer_id);
     }
 
-    private void createTripOrder () throws SQLException {
+    private void createTripOrder() throws SQLException {
         System.out.println("\n[Trip Order / CREATE]");
         Trip_Order trip_order = getTripOrderInputs();
         trip_orderController.create(trip_order);
         System.out.println("Trip order successfully created\n");
     }
 
-    private void updateTripOrder () throws SQLException {
+    private void updateTripOrder() throws SQLException {
         System.out.println("\n[Trip Oder / UPDATE] Enter ID: ");
         Integer id = SCANNER.nextInt();
         Trip_Order trip_order = getTripOrderInputs();
@@ -469,63 +457,4 @@ public class MainView {
     }
 
 
-
-
-
-
-
-   /* private void getAllTripAdvizorObjects() throws SQLException {
-        System.out.println("\nTrip Advizor objects:");
-        System.out.println(tripAdvizor_objecController.getAll());
-    }
-
-    private void getTripAdvizorObjectsById() throws SQLException {
-        System.out.println("\nEnter ID for the TripAdvizor object you want to find");
-        int id = INPUT.nextInt();
-        System.out.println(tripAdvizor_objecController.getById(id));
-    }
-
-    private void deleteTripAdvizorObject() throws SQLException {
-        System.out.println("\nEnter TripAdvizor object for the user you want to delete");
-        int id = INPUT.nextInt();
-        System.out.println(tripAdvizor_objecController.delete(id));
-    }
-
-    private void createTripAdvizorObject () throws SQLException {
-        System.out.println("\nEnter TripAdvizorObject ID");
-        int Id = INPUT.nextInt();
-        System.out.println("\nEnter object name ");
-        String objec_name = INPUT.next();
-        System.out.println("\nEnter number star");
-        String number_of_star = INPUT.next();
-        System.out.println("\nEnter free room");
-        String free_room = INPUT.next();
-        System.out.println("\nEnter busy room");
-        String busy_room = INPUT.next();
-        System.out.println("\nEnter all inclusive");
-        String all_inclusive = INPUT.next();
-        System.out.println("\nEnter ultra all inclusive");
-        String ultra_all_inclusive = INPUT.next();
-        TripAdvizor_objec tripAdvizor_objec = new TripAdvizor_objec(Id, objec_name, number_of_star, free_room, busy_room, all_inclusive, ultra_all_inclusive);
-        System.out.println(tripAdvizor_objecController.create(tripAdvizor_objec));
-    }
-
-    private void updateTripAdvizorObject() throws SQLException {
-        System.out.println("\nEnter TripAdvizorObject ID");
-        int Id = INPUT.nextInt();
-        System.out.println("\nEnter object name ");
-        String objec_name = INPUT.next();
-        System.out.println("\nEnter number star");
-        String number_of_star = INPUT.next();
-        System.out.println("\nEnter free room");
-        String free_room = INPUT.next();
-        System.out.println("\nEnter busy room");
-        String busy_room = INPUT.next();
-        System.out.println("\nEnter all inclusive");
-        String all_inclusive = INPUT.next();
-        System.out.println("\nEnter ultra all inclusive");
-        String ultra_all_inclusive = INPUT.next();
-        TripAdvizor_objec tripAdvizor_objec = new TripAdvizor_objec(Id, objec_name, number_of_star, free_room, busy_room, all_inclusive, ultra_all_inclusive);
-        System.out.println(tripAdvizor_objecController.update(tripAdvizor_objec));
-    }*/
 }

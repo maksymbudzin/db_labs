@@ -1,19 +1,22 @@
 package com.budzin.model;
 
-import com.budzin.annotation.Colomn;
-import com.budzin.annotation.Primary_key;
+
 import com.budzin.annotation.Table;
 
-@Table(name = "Customer")
-public class Customer {
-    @Primary_key
-    @Colomn(name = "id")
-    private int id;
+import javax.persistence.*;
 
-    @Colomn(name = "name")
+@Table(name = "Customer")
+@Entity
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "name")
     private String name;
 
-    @Colomn(name = "surname")
+    @Column(name = "surname")
     private String surname;
 
     public Customer(int id, String name, String surname) {
@@ -24,6 +27,10 @@ public class Customer {
 
     public Customer(String name, String surname) {
         this(-1, name, surname);
+
+    }
+
+    public Customer() {
 
     }
 
@@ -56,8 +63,8 @@ public class Customer {
     public String toString() {
         return
                 "\nid=" + id +
-                ",\n name='" + name + '\'' +
-                ",\n surname='" + surname + '\'' +
-                '}';
+                        ",\n name='" + name + '\'' +
+                        ",\n surname='" + surname + '\'' +
+                        '}';
     }
 }

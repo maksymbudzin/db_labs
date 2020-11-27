@@ -1,23 +1,26 @@
 package com.budzin.model;
 
-import com.budzin.annotation.Colomn;
-import com.budzin.annotation.Primary_key;
+
 import com.budzin.annotation.Table;
 
+import javax.persistence.*;
+
 @Table(name = "Trip_Order")
+@Entity
 public class Trip_Order {
 
-    @Primary_key
-    @Colomn(name = "id")
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-    @Colomn(name = "price_in_dollars")
+    @Column(name = "price_in_dollars")
     private String price_in_dollars;
 
-    @Colomn(name = "date")
+    @Column(name = "date")
     private String date;
 
-    @Colomn(name = "Customer_id")
+    @Column(name = "Customer_id")
     private String Customer_id;
 
     public Trip_Order(int id, String price_in_dollars, String date, String customer_id) {
@@ -27,8 +30,12 @@ public class Trip_Order {
         Customer_id = customer_id;
     }
 
-    public Trip_Order( String price_in_dollars, String date, String customer_id) {
+    public Trip_Order(String price_in_dollars, String date, String customer_id) {
         this(-1, price_in_dollars, date, customer_id);
+    }
+
+    public Trip_Order() {
+
     }
 
     public int getId() {
@@ -67,9 +74,9 @@ public class Trip_Order {
     public String toString() {
         return
                 "\n id=" + id +
-                ",\n  price_in_dollars='" + price_in_dollars + '\'' +
-                ",\n date='" + date + '\'' +
-                ",\n Customer_id='" + Customer_id + '\'' +
-                '}';
+                        ",\n  price_in_dollars='" + price_in_dollars + '\'' +
+                        ",\n date='" + date + '\'' +
+                        ",\n Customer_id='" + Customer_id + '\'' +
+                        '}';
     }
 }

@@ -1,20 +1,23 @@
 package com.budzin.model;
 
-import com.budzin.annotation.Colomn;
-import com.budzin.annotation.Primary_key;
+
 import com.budzin.annotation.Table;
 
+import javax.persistence.*;
+
 @Table(name = "Location")
+@Entity
 public class Location {
 
-    @Primary_key
-    @Colomn(name = "id")
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-    @Colomn(name = "Country")
+    @Column(name = "Country")
     private String Country;
 
-    @Colomn(name = "City")
+    @Column(name = "City")
     private String City;
 
     public Location(int id, String country, String city) {
@@ -25,6 +28,10 @@ public class Location {
 
     public Location(String country, String city) {
         this(-1, country, city);
+    }
+
+    public Location() {
+
     }
 
     public int getId() {
@@ -55,8 +62,8 @@ public class Location {
     public String toString() {
         return
                 "\nid=" + id +
-                ",\n Country='" + Country + '\'' +
-                ",\n City='" + City + '\'' +
-                '}';
+                        ",\n Country='" + Country + '\'' +
+                        ",\n City='" + City + '\'' +
+                        '}';
     }
 }

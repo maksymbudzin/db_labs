@@ -4,23 +4,27 @@ import com.budzin.annotation.Colomn;
 import com.budzin.annotation.Primary_key;
 import com.budzin.annotation.Table;
 
+import javax.persistence.*;
+
 @Table(name = "Feedback")
+@Entity
 public class Feedback {
 
-    @Primary_key
-    @Colomn(name = "id")
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
 
-    @Colomn(name = "feedback_text")
+    @Column(name = "feedback_text")
     private String feedback_text;
 
-    @Colomn(name = "time")
+    @Column(name = "time")
     private String time;
 
-    @Colomn(name = "Customer_id")
+    @Column(name = "Customer_id")
     private String Customer_id;
 
-    @Colomn(name = "Customer_Trip_Order_id")
+    @Column(name = "Customer_Trip_Order_id")
     private String Customer_Trip_Order_id;
 
     public Feedback(int id, String name, String time, String customer_id, String customer_Trip_Order_id) {
@@ -33,6 +37,10 @@ public class Feedback {
 
     public Feedback(String name, String time, String customer_id, String customer_Trip_Order_id) {
         this(-1, name, time, customer_id, customer_Trip_Order_id);
+    }
+
+    public Feedback() {
+
     }
 
     public int getId() {

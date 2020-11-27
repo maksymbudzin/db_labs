@@ -1,10 +1,10 @@
-CREATE SCHEMA IF NOT EXISTS budzin_db_lab4_jdbc DEFAULT CHARACTER SET utf8;
-USE budzin_db_lab4_jdbc;
+CREATE SCHEMA IF NOT EXISTS budzin_db_lab5_jdbc DEFAULT CHARACTER SET utf8;
+USE budzin_db_lab5_jdbc;
 
 -- -----------------------------------------------------
 -- Table `budzin_db`.`TripAdvizor_object`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`TripAdvizor_object`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`TripAdvizor_object`
 (
     `id`                  INT         NOT NULL AUTO_INCREMENT,
     `objec_name`          VARCHAR(30) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`TripAdvizor_object`
 -- -----------------------------------------------------
 -- Table `budzin_db`.`Customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Customer`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`Customer`
 (
     `id`      INT         NOT NULL AUTO_INCREMENT,
     `name`    VARCHAR(20) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Customer`
 -- -----------------------------------------------------
 -- Table `budzin_db`.`Feedback`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Feedback`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`Feedback`
 (
     `id`                     INT         NOT NULL AUTO_INCREMENT,
     `feedback_text`          VARCHAR(45) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Feedback`
 -- -----------------------------------------------------
 -- Table `budzin_db`.`rating`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`rating`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`rating`
 (
     `Id`                     INT    NOT NULL AUTO_INCREMENT,
     `number_of_star`         INT(5) NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`rating`
 -- -----------------------------------------------------
 -- Table `budzin_db`.`Owner_information`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Owner_information`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`Owner_information`
 (
     `id`      INT         NOT NULL AUTO_INCREMENT,
     `Name`    VARCHAR(45) NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Owner_information`
 -- -----------------------------------------------------
 -- Table `budzin_db`.`Location`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Location`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`Location`
 (
     `id`      INT         NOT NULL AUTO_INCREMENT,
     `Country` VARCHAR(45) NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Location`
 -- -----------------------------------------------------
 -- Table `budzin_db`.`Trip_Order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS budzin_db_lab4_jdbc.`Trip_Order`
+CREATE TABLE IF NOT EXISTS budzin_db_lab5_jdbc.`Trip_Order`
 (
     `id`               INT        NOT NULL AUTO_INCREMENT,
     `price_in_dollars` VARCHAR(4) NOT NULL,

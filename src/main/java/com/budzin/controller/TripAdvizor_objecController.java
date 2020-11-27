@@ -1,42 +1,22 @@
 package com.budzin.controller;
 
 
+import com.budzin.DAO.implementation.AbstractGenericDaoImpl;
+
 import com.budzin.DAO.implementation.TripAdvizor_objecDAO;
-import com.budzin.model.TripAdvizor_objec;
 
-import java.sql.SQLException;
-import java.util.List;
+import com.budzin.model.TripAdvizor_object;
 
-public class TripAdvizor_objecController implements GeneralController<TripAdvizor_objec> {
 
-    private static final TripAdvizor_objecDAO tripAdvizor_objects = new TripAdvizor_objecDAO();
+public class TripAdvizor_objecController
+        extends AbstractGenericControllerImpl<TripAdvizor_object> {
 
-    public TripAdvizor_objecController() {
-    }
+    private final TripAdvizor_objecDAO tripAdvizor_objecDAO = new TripAdvizor_objecDAO();
 
     @Override
-    public List<TripAdvizor_objec> getAll() throws SQLException {
-        return tripAdvizor_objects.getAll();
+    public AbstractGenericDaoImpl<TripAdvizor_object> getDao() {
+        return tripAdvizor_objecDAO;
     }
 
-    @Override
-    public TripAdvizor_objec getById(int id) throws SQLException {
-        return tripAdvizor_objects.getById(id);
-    }
 
-    @Override
-    public void create(TripAdvizor_objec object) throws SQLException {
-        tripAdvizor_objects.create(object);
-
-    }
-
-    @Override
-    public void update(int id, TripAdvizor_objec object) {
-        tripAdvizor_objects.update(id, object);
-    }
-
-    @Override
-    public void delete(int id) {
-        tripAdvizor_objects.delete(id);
-    }
 }
