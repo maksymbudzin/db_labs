@@ -1,6 +1,14 @@
 CREATE SCHEMA IF NOT EXISTS budzin_db_lab4_jdbc DEFAULT CHARACTER SET utf8;
 USE budzin_db_lab4_jdbc;
 
+DROP TABLE IF EXISTS TripAdvizor_object;
+DROP TABLE IF EXISTS Customer;
+DROP TABLE IF EXISTS Feedback;
+DROP TABLE IF EXISTS rating;
+DROP TABLE IF EXISTS Owner_information;
+DROP TABLE IF EXISTS Location;
+DROP TABLE IF EXISTS Trip_Order;
+
 -- -----------------------------------------------------
 -- Table `budzin_db`.`TripAdvizor_object`
 -- -----------------------------------------------------
